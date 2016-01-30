@@ -8,8 +8,8 @@ export class App extends Component {
 
   componentDidMount() {
     this.socket = io(`http://localhost:3000`);
-    this.socket.on('connect', () => {
-      console.log('eyyo!')
+    this.socket.on('tweet', (tweet) => {
+      console.log('got a tweet!', tweet);
     });
   }
 
