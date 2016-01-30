@@ -3,13 +3,17 @@ var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
 var config = require('./webpack.config');
 
-var app = new (require('express'))();
+var express = require('express');
+var app = new express();
 var socketio = require('socket.io');
 var http = require('http');
 var port = 3000
 
 var compiler = webpack(config)
-app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
+app.use(express.static(__dirname + '/dist'));
+app.use(webpackDevMiddleware(compiler, 
+  { noInfo: true, publicPath: config.output.publicPath }
+))
 app.use(webpackHotMiddleware(compiler))
 
 app.get("/", function(req, res) {
@@ -27,5 +31,5 @@ var server = http.createServer(app).listen(port, function(error) {
 var io = socketio.listen(server);
 
 io.on('connection', function(socket) {
-  console.log('socket connection');
+  console.log('socket connection!');
 });
