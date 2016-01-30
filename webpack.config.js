@@ -7,6 +7,9 @@ module.exports = {
     'webpack-hot-middleware/client',
     './src/app'
   ],
+  stats: {
+      colors: true
+  },
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
