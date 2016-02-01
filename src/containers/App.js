@@ -1,21 +1,28 @@
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as TweetActions from '../actions/tweets';
 import io from 'socket.io-client';
+import { TweetList } from '../components/TweetList';
 
-export class App extends Component {
+class App extends Component {
   socket;
+
+  constructor(props) {
+    super(props);
+  }
 
   componentDidMount() {
     this.socket = io(`http://localhost:3000`);
     this.socket.on('tweet', (tweet) => {
-      console.log('got a tweet!', tweet);
+      this.props.actions.addTweet(tweet);
     });
   }
 
   render() {
+    const { tweets } = this.props;
     return (
-      <div>Hello World!</div>
+      <TweetList tweets={tweets} />
     );
   }
 }
@@ -25,8 +32,10 @@ App.propTypes = {
 };
 
 function mapStateToProps(state) {
+  const { tweets } = state;
+
   return {
-    tweets: state.tweets
+    tweets
   }
 }
 

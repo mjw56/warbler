@@ -6,9 +6,7 @@ export default function todos(state = initialState, action) {
   switch (action.type) {
     case ADD_TWEET:
       return [
-        {
-          tweet: action.tweet
-        }, 
+        action.tweet, 
         ...state
       ]
 
