@@ -9,7 +9,9 @@
     }
   },
   "rules": {
-      "react/jsx-equals-spacing": 1,
+     "react/jsx-equals-spacing": 1,
      "react/jsx-no-duplicate-props": 1,
+     "react/no-multi-comp": 1,
+     "react/jsx-key": 1,
   }
 }
