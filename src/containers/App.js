@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as TweetActions from '../actions/tweets';
 import io from 'socket.io-client';
 import { TweetList } from '../components/TweetList';
+import DevTools from './DevTools';
 
 class App extends Component {
   socket;
@@ -22,7 +23,10 @@ class App extends Component {
   render() {
     const { tweets } = this.props;
     return (
-      <TweetList tweets={tweets} />
+      <div>
+        <TweetList tweets={tweets} />
+        <DevTools />
+      </div>
     );
   }
 }
