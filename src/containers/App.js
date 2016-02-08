@@ -6,8 +6,9 @@ import io from 'socket.io-client';
 import { TweetList } from '../components/TweetList';
 import DevTools from './DevTools';
 import { List } from 'immutable-props';
+import { ImmutableComponent } from '../components/ImmutableComponent';
 
-class App extends Component {
+class App extends ImmutableComponent {
   socket;
 
   constructor(props) {
