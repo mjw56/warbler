@@ -1,10 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as TweetActions from '../actions/tweets';
 import io from 'socket.io-client';
 import { TweetList } from '../components/TweetList';
 import DevTools from './DevTools';
+import { List } from 'immutable-props';
 
 class App extends Component {
   socket;
@@ -32,7 +33,7 @@ class App extends Component {
 }
 
 App.propTypes = {
-  tweets: PropTypes.array
+  tweets: List
 };
 
 function mapStateToProps(state) {

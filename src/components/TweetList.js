@@ -1,5 +1,6 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Tweet } from './Tweet';
+import { List } from 'immutable-props';
 
 export const TweetList = (props) => (
   <ul>{props.tweets.map((tweet, i) => 
@@ -8,5 +9,5 @@ export const TweetList = (props) => (
 );
 
 TweetList.propTypes = {
-  tweets: PropTypes.array.isRequired
+  tweets: List
 };
