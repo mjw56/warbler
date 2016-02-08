@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "immutable": "^3.7.6",
+    "immutable-props": "^1.1.0",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-redux": "^4.3.0",
