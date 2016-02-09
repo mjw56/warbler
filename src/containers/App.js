@@ -3,10 +3,14 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as TweetActions from '../actions/tweets';
 import io from 'socket.io-client';
-import { TweetList } from '../components/TweetList';
 import DevTools from './DevTools';
 import { List } from 'immutable-props';
-import { ImmutableComponent } from '../components/ImmutableComponent';
+import { createSelector } from 'reselect';
+import {
+  Header,
+  ImmutableComponent,
+  TweetList
+} from '../components/index';
 
 class App extends ImmutableComponent {
   socket;
@@ -26,6 +30,7 @@ class App extends ImmutableComponent {
     const { tweets } = this.props;
     return (
       <div>
+        <Header />
         <TweetList tweets={tweets} />
         <DevTools />
       </div>
@@ -37,11 +42,9 @@ App.propTypes = {
   tweets: List
 };
 
-function mapStateToProps(state) {
-  const { tweets } = state;
-
+const mapStateToProps = (state) => {
   return {
-    tweets
+    tweets: state.tweets
   }
 }
 
