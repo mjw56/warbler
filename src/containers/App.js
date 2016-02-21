@@ -13,24 +13,31 @@ import {
 } from '../components/index';
 
 class App extends ImmutableComponent {
-  socket;
-
   constructor(props) {
     super(props);
+    this.state = {
+      socket: {}
+    };
   }
 
   componentDidMount() {
-    this.socket = io(`http://localhost:3000`);
-    this.socket.on('tweet', (tweet) => {
+    const socket = io.connect(`http://localhost:3000`);
+    socket.on('tweet', (tweet) => {
       this.props.actions.addTweet(tweet);
+    });
+
+    this.setState({
+      socket: socket
     });
   }
 
   render() {
     const { tweets } = this.props;
+    const { socket } = this.state;
+
     return (
       <div>
-        <Header />
+        <Header socket={socket}/>
         <TweetList tweets={tweets} />
         <DevTools />
       </div>
