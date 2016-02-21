@@ -41,17 +41,21 @@ var client = new Twitter({
 });
 
 var io = socketio.listen(server);
+var _stream;
 
 io.on('connection', function(socket) {
   startStream(socket, 'javascript');
 
   socket.on('twitter:update:search', function(term) {
     console.log('received a new search:', term);
+    _stream.destroy();
+    startStream(socket, term);
   });
 });
 
 function startStream(socket, term) {
   client.stream('statuses/filter', { track: term }, function(stream) {
+    _stream = stream;
     stream.on('data', function(tweet) {
       socket.emit('tweet', tweet.text);
     });
