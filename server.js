@@ -43,9 +43,15 @@ var client = new Twitter({
 var io = socketio.listen(server);
 
 io.on('connection', function(socket) {
-  console.log('socket connection!');
+  startStream(socket, 'javascript');
 
-  client.stream('statuses/filter', {track: 'javascript'}, function(stream) {
+  socket.on('twitter:update:search', function(term) {
+    console.log('received a new search:', term);
+  });
+});
+
+function startStream(socket, term) {
+  client.stream('statuses/filter', { track: term }, function(stream) {
     stream.on('data', function(tweet) {
       socket.emit('tweet', tweet.text);
     });
@@ -54,5 +60,4 @@ io.on('connection', function(socket) {
       throw error;
     });
   });
-
-});
+}
