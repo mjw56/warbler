@@ -7,17 +7,17 @@ var emoji = require('node-emoji');
 
 var express = require('express');
 var app = new express();
-var socketio = require('socket.io');
-var http = require('http');
-
-var port = 3000
 
 var compiler = webpack(config)
-app.use(express.static(__dirname + '/dist'));
 app.use(webpackDevMiddleware(compiler, 
   { noInfo: true, publicPath: config.output.publicPath }
-))
-app.use(webpackHotMiddleware(compiler))
+));
+app.use(webpackHotMiddleware(compiler));
+app.use(express.static(__dirname + '/dist'));
+
+var socketio = require('socket.io');
+var http = require('http');
+var port = 3000;
 
 app.get("/", function(req, res) {
   res.sendFile(__dirname + '/index.html')
