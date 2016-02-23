@@ -3,7 +3,7 @@ import { fromJS } from 'immutable';
 
 const initialState = []
 
-export default function todos(state = initialState, action) {
+export default function tweets(state = initialState, action) {
   switch (action.type) {
     case ADD_TWEET:
       return fromJS([
