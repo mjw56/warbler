@@ -5,11 +5,15 @@ export const Tweet = (props) => {
   const image = props.tweet.get('user');
 
   return (
-    <li>
-      <ProfileImage 
-        image={image.get('profile_image_url')} />
-      <p>{props.tweet.get('text')}</p>
-    </li>
+    <div className="row" style={{ marginBottom: 15}}>
+      <div className="col-md-1">
+        <ProfileImage 
+          image={image.get('profile_image_url')} />
+      </div>
+      <div className="col-md-11">
+        <p style={{ marginTop: 12 }}>{props.tweet.get('text')}</p>
+      </div>
+    </div>
   );
 };
 
