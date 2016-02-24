@@ -3,9 +3,9 @@ import { Tweet } from './Tweet';
 import { List } from 'immutable-props';
 
 export const TweetList = (props) => (
-  <ul>{props.tweets.map((tweet, i) => 
+  <div className="container">{props.tweets.map((tweet, i) => 
     <Tweet key={i} tweet={tweet} />)}
-  </ul>
+  </div>
 );
 
 TweetList.propTypes = {
