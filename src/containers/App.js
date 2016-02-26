@@ -32,7 +32,7 @@ class App extends ImmutableComponent {
   }
 
   render() {
-    const { tweets } = this.props;
+    const { tweets = [] } = this.props;
     const { socket } = this.state;
 
     return (
