@@ -1,10 +1,16 @@
-import { createStore, compose } from 'redux';
-import rootReducer from '../reducers';
+import { 
+  applyMiddleware, 
+  createStore, 
+  combineReducers, 
+  compose 
+} from 'redux';
+import { browserHistory } from 'react-router';
+import reducers from '../reducers';
 import DevTools from '../containers/DevTools';
 
 export default function configureStore(initialState) {
   const store = createStore(
-    rootReducer, 
+    reducers, 
     initialState,
     compose(
       DevTools.instrument()
