@@ -11,7 +11,7 @@ export const Tweet = (props) => {
           image={_tweet.user.profile_image_url} />
       </div>
       <div className="col-md-8">
-        <p><strong>{_tweet.user.name}</strong> • {_tweet.user.screen_name}</p>
+        <p><strong>{_tweet.user.name}</strong> • @{_tweet.user.screen_name}</p>
         <p style={{ marginTop: 12 }}>{_tweet.text}</p>
       </div>
     </div>
